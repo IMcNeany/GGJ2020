@@ -11,7 +11,7 @@ public class Leaper : Enemies
     [SerializeField] private bool left;
     [SerializeField] private bool up;
     private Rigidbody2D body;
-    private float jumpTimer;
+    [SerializeField] private float jumpTimer;
     private bool playerInRange;
 
     void Start()
@@ -96,7 +96,8 @@ public class Leaper : Enemies
     private void OnCollisionEnter2D(Collision2D collision)
     {
         ContactPoint2D point = collision.GetContact(0);
-
+        float dir = Mathf.Atan2(point.normal.y, point.normal.x) * Mathf.Rad2Deg;
+        dir -= 90;
         if (collision.gameObject.CompareTag("Wall"))
         {
             jumpTimer = 0;
@@ -106,7 +107,7 @@ public class Leaper : Enemies
                 body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
                 vert = true;
                 up = false;
-                transform.rotation = Quaternion.AngleAxis(0, Vector3.forward);
+                transform.rotation = Quaternion.AngleAxis(dir, Vector3.forward);
             }
             else if (point.normal.y < -0.3)
             {
@@ -114,7 +115,7 @@ public class Leaper : Enemies
                 body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
                 vert = true;
                 up = true;
-                transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
+                transform.rotation = Quaternion.AngleAxis(dir, Vector3.forward);
             }
             else if (point.normal.x > 0.3)
             {
@@ -122,7 +123,7 @@ public class Leaper : Enemies
                 body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
                 vert = false;
                 left = true;
-                transform.rotation = Quaternion.AngleAxis(-90, Vector3.forward);
+                transform.rotation = Quaternion.AngleAxis(dir, Vector3.forward);
             }
             else if (point.normal.x < -0.3)
             {
@@ -130,7 +131,7 @@ public class Leaper : Enemies
                 body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
                 vert = false;
                 left = false;
-                transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
+                transform.rotation = Quaternion.AngleAxis(dir, Vector3.forward);
             }
         }
         
