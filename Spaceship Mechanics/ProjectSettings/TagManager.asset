@@ -44,8 +44,11 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Debris
-    uniqueID: 362566723
+  - name: BGImage
+    uniqueID: 3075186693
+    locked: 0
+  - name: WallsAndFloors
+    uniqueID: 1314179353
     locked: 0
   - name: Interactables
     uniqueID: 986997245
@@ -58,4 +61,7 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 4239418153
+    locked: 0
+  - name: UI
+    uniqueID: 405218623
     locked: 0
