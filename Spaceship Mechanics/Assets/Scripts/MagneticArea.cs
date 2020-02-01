@@ -18,6 +18,17 @@ public class MagneticArea : MonoBehaviour
     {
         held_rigids = new List<Rigidbody2D>();
     }
+    public void RemoveDebris(GameObject obj)
+    {
+        for(int i = 0; i < held_rigids.Count; i++)
+        {
+            if(held_rigids[i].gameObject == obj)
+            {
+                held_rigids.RemoveAt(i);
+                return;
+            }
+        }
+    }
 
     private void Update()
     {
@@ -38,6 +49,7 @@ public class MagneticArea : MonoBehaviour
             if(collision.gameObject.GetComponent<Rigidbody2D>() != null)
             {
                 held_rigids.Add(collision.gameObject.GetComponent<Rigidbody2D>());
+                collision.gameObject.GetComponent<DebrisChecker>().magnetized = true;
             }
         }
     }
@@ -48,6 +60,7 @@ public class MagneticArea : MonoBehaviour
         {
             if(held_rigids[i] == other.gameObject.GetComponent<Rigidbody2D>())
             {
+                held_rigids[i].gameObject.GetComponent<DebrisChecker>().magnetized = false;
                 held_rigids.RemoveAt(i);
             }
         }

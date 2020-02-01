@@ -41,7 +41,7 @@ public class MagneticTool : PlayerEquipment
 
     public override void SecondaryFireHeld()
     {
-        if (current_reload < reload_time)
+        if (current_reload > 0)
         {
             return;
         }

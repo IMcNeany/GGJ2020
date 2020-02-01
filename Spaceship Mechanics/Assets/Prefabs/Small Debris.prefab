@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6830389374688008084}
   - component: {fileID: 2371737368043425724}
   - component: {fileID: 8624384369936405429}
+  - component: {fileID: 4633112445081192275}
   m_Layer: 0
   m_Name: Small Debris
   m_TagString: Debris
@@ -69,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 362566723
-  m_SortingLayer: 1
+  m_SortingLayer: 3
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: b71518d43c639434dbec631f586bd4c3, type: 3}
   m_Color: {r: 0.23584908, g: 0.23584908, b: 0.23584908, a: 1}
@@ -119,3 +120,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!114 &4633112445081192275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7509728266194249775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 499087bc6ba920e44bf4822ef9de55e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  magnetized: 0
+  magnetic_area: {fileID: 0}
