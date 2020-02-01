@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class Exploder : Enemies
 {
-    // Start is called before the first frame update
+
+    public GameObject explosion;
+    public GameObject hit;
+    public float timer = 3.0f;
+
     void Start()
     {
         enemy_rigidbody = GetComponent<Rigidbody2D>();
-
     }
     void OnTriggerStay2D(Collider2D collision)
     {
         if (the_player == null)
-        {
+        { 
             if (collision.tag == "Player")
             {
                 the_player = collision.gameObject.transform;
@@ -23,14 +26,14 @@ public class Exploder : Enemies
         if (the_player)
         {
             Chase();
-            Hit();
         }
+ 
         else
         {
             //do nothing
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.transform == the_player)
         {
@@ -38,15 +41,17 @@ public class Exploder : Enemies
         }
     }
 
-    void Wander()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-
+        if(collision.gameObject.tag == "Player")
+        {
+            Hit();
+        }
     }
 
     void Chase()
     {
         //find & attack player
-        //transform.LookAt(the_player);
 
         float distance = Vector3.Distance(transform.position, the_player.position);
         /*float step = speed * Time.deltaTime;*/ // calculates distance to move
@@ -62,8 +67,27 @@ public class Exploder : Enemies
         }
     }
 
+
+    // bellow is for explosioions
     void Hit()
     {
+        if (hit)
+        {
+            //big explosion
+            //players health gets set down
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            gameObject.SetActive(false);
 
+        }
+    }
+
+    void Timer()
+    {
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            Debug.Log("why");
+            explosion.SetActive(false);
+        }
     }
 }

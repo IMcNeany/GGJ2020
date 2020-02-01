@@ -147,7 +147,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -233,3 +233,6 @@ MonoBehaviour:
   walking_distance: 10
   circle_collider: {fileID: 3610099519994634283}
   box_collider: {fileID: 2449379807755785066}
+  explosion: {fileID: 2092844412652164840, guid: b7345d9840b9bde4ab349727740687fa,
+    type: 3}
+  hit: {fileID: 2449379807755785066}
