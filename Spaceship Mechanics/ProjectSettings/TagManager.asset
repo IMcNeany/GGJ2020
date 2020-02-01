@@ -42,6 +42,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BGImage
+    uniqueID: 2051369011
+    locked: 0
+  - name: WallsAndFloors
+    uniqueID: 1274894331
+    locked: 0
   - name: Debris
     uniqueID: 362566723
     locked: 0
