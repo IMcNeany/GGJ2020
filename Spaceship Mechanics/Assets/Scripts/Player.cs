@@ -135,4 +135,10 @@ public class Player : MonoBehaviour
             }
         }
     }
+
+    public void AddEquipment(PlayerEquipment _equip)
+    {
+        equipment.Add(_equip);
+        _equip.transform.parent = transform;
+    }
 }
