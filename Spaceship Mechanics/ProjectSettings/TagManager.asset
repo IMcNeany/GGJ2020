@@ -44,6 +44,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: BGImage
+    uniqueID: 3075186693
+    locked: 0
+  - name: WallsAndFloors
+    uniqueID: 1314179353
+    locked: 0
   - name: Interactables
     uniqueID: 986997245
     locked: 0
