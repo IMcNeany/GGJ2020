@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Debris
   layers:
   - Default
   - TransparentFX
@@ -46,4 +47,10 @@ TagManager:
     locked: 0
   - name: Interactables
     uniqueID: 986997245
+    locked: 0
+  - name: Equiptment
+    uniqueID: 2480329489
+    locked: 0
+  - name: Character
+    uniqueID: 4239418153
     locked: 0

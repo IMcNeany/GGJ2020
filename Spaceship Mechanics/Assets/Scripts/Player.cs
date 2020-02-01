@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public GameObject laser;
     private Rigidbody2D body;
     public HealthBar healthbar;
-
+    public PlayerEquiptment current_equiptment;
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -51,15 +51,37 @@ public class Player : MonoBehaviour
         float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        if (Input.GetKeyDown(KeyCode.Space))        //laser control
+        if (Input.GetMouseButtonDown(0))
         {
             GameObject newLaser = Instantiate(laser, transform.position + transform.up * 0.45f, this.transform.rotation);
             Vector2 impulse = transform.up * 100;
             newLaser.GetComponent<Laser>().launchSpeed = impulse;
             body.AddForce(-impulse);
+            current_equiptment.Fire();
         }
 
         healthbar.fill = health/maxHealth;
+        if(Input.GetMouseButtonUp(0))
+        {
+            current_equiptment.StopFire();
+        }
+        if (Input.GetMouseButton(0))
+        {
+            current_equiptment.FireHeld();
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            current_equiptment.SecondaryFire();
+        }
+        if(Input.GetMouseButtonUp(1))
+        {
+            current_equiptment.StopSecondaryFire();
+        }
+        if(Input.GetMouseButton(1))
+        {
+            current_equiptment.SecondaryFireHeld();
+        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
