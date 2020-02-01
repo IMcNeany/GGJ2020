@@ -8,9 +8,9 @@ public class Enemies : MonoBehaviour
     public float speed = 10.0f;
     public float enemy_health = 5.0f;
     public float walking_distance = 10.0f;
-    public float smooth_time = 10.0f;
+    //public float smooth_time = 10.0f;
 
-    public Transform the_player;
+    Transform the_player;
     private Rigidbody2D enemy_rigidbody;
     private Vector3 smoothVelocity = Vector3.zero;
     //private NavMeshAgent nav;
@@ -26,6 +26,14 @@ public class Enemies : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if(the_player == null)
+        {
+            if (collision.tag == "Player")
+            {
+                the_player = collision.gameObject.transform;
+            }
+        }
+
         if (circle_collider)
         {
             //find & attack player

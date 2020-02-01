@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8270624088005070278}
+  - component: {fileID: 5317221705025905813}
   m_Layer: 0
   m_Name: Detection
   m_TagString: Untagged
@@ -30,6 +31,22 @@ Transform:
   m_Father: {fileID: 8667470117081181432}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &5317221705025905813
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3910455071949921055}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 3
 --- !u!1 &8667470117081181434
 GameObject:
   m_ObjectHideFlags: 0
@@ -173,10 +190,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fddffac8055f104881e8b3ef5445474, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 30
   enemy_health: 5
   walking_distance: 10
-  smooth_time: 10
-  the_player: {fileID: 7863962934000003231, guid: b8a7e4d6efe99184fa85c4494f739d94,
-    type: 3}
   circle_collider: {fileID: 3910455071949921055}
