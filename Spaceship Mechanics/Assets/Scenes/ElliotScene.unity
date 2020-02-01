@@ -328,8 +328,8 @@ MonoBehaviour:
   m_UseNormalMap: 0
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
-  m_PointLightInnerAngle: 0
-  m_PointLightOuterAngle: 59.68
+  m_PointLightInnerAngle: 30
+  m_PointLightOuterAngle: 60
   m_PointLightInnerRadius: 0
   m_PointLightOuterRadius: 0
   m_PointLightDistance: 3
@@ -2063,7 +2063,7 @@ PrefabInstance:
     - target: {fileID: 8230152028742628675, guid: b8a7e4d6efe99184fa85c4494f739d94,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1800685515646152814, guid: b8a7e4d6efe99184fa85c4494f739d94,
         type: 3}
@@ -2078,7 +2078,7 @@ PrefabInstance:
     - target: {fileID: 249489731025842926, guid: b8a7e4d6efe99184fa85c4494f739d94,
         type: 3}
       propertyPath: m_Name
-      value: temptool
+      value: MagneticTool
       objectReference: {fileID: 0}
     - target: {fileID: 3157957787007728729, guid: b8a7e4d6efe99184fa85c4494f739d94,
         type: 3}
@@ -3648,8 +3648,8 @@ MonoBehaviour:
   m_UseNormalMap: 0
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
-  m_PointLightInnerAngle: 30.470001
-  m_PointLightOuterAngle: 59.4
+  m_PointLightInnerAngle: 30
+  m_PointLightOuterAngle: 60
   m_PointLightInnerRadius: 0.069608115
   m_PointLightOuterRadius: 2.518532
   m_PointLightDistance: 3
