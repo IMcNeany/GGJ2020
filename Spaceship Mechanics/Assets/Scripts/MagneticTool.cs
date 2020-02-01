@@ -20,8 +20,6 @@ public class MagneticTool : PlayerEquipment
             return;
         }
         magnetic_area.SetActive(true);
-
-        base.Fire();
     }
 
 
@@ -37,7 +35,7 @@ public class MagneticTool : PlayerEquipment
         charge_area.transform.localPosition = start_area;
         magnetic_area.GetComponent<MagneticArea>().Pulse(current_charge * 10.0f);
         magnetic_area.SetActive(false);
-        current_reload = 0.0f;
+        current_reload = reload_time;
         current_charge = 0.0f;
     }
 
