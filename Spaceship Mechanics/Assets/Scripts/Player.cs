@@ -23,7 +23,7 @@ public class Player : MonoBehaviour
     public HealthBar o2Bar;
     public int equipIndex;
     public List<PlayerEquipment> equipment;
-    public Light2D light;
+    private Light2D light;
     
     void Start()
     {
@@ -100,7 +100,7 @@ public class Player : MonoBehaviour
             o2Bar.fill = O2 / maxO2;
         }
 
-        if (O2 / maxO2 <= 0.5 && O2 / maxO2 > 0.1)
+        if (O2 / maxO2 <= 0.5 && O2 / maxO2 > 0.1)      //dim light
         {
             light.intensity = (O2 * 2) / maxO2;
         }
@@ -162,5 +162,10 @@ public class Player : MonoBehaviour
     {
         equipment.Add(_equip);
         _equip.transform.parent = transform;
+    }
+
+    public void DealDamage(float _dam)
+    {
+        health -= _dam;
     }
 }

@@ -18,6 +18,10 @@ public class Laser : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<Enemies>().DealDamage(10);
+        }
         Destroy(gameObject);
     }
 }

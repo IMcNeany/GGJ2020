@@ -6,7 +6,7 @@ using UnityEngine;
 public class Enemies : MonoBehaviour
 {
     public float speed = 10.0f;
-    public float enemy_health = 5.0f;
+    public float enemy_health = 50f;
     public float walking_distance = 10.0f;
     //public float smooth_time = 10.0f;
 
@@ -26,7 +26,17 @@ public class Enemies : MonoBehaviour
         //circle_collider = GetComponent<CircleCollider2D>();
     }
 
-    
+    public void DealDamage(float _dam)
+    {
+        enemy_health -= _dam;
+    }
 
+    public virtual void Update()
+    {
+        if (enemy_health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
 }

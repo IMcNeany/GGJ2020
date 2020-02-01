@@ -6,11 +6,13 @@ public class Leaper : Enemies
 {
     public float jumpForce;
     private bool cling;
+    [Header("Wall location")]
     [SerializeField] private bool vert;
     [SerializeField] private bool left;
     [SerializeField] private bool up;
     private Rigidbody2D body;
     private float jumpTimer;
+    private bool playerInRange;
 
     void Start()
     {
@@ -43,12 +45,23 @@ public class Leaper : Enemies
     void Update()
     {
         jumpTimer += Time.deltaTime * Random.value;
-        if(jumpTimer > 10 && cling)
+        if(jumpTimer > 5 && cling)
         {
-            body.constraints = RigidbodyConstraints2D.None;
-            cling = false;
-            body.velocity = new Vector2(0, 0);
-            body.AddForce(transform.up * jumpForce);
+            if (playerInRange)
+            {
+                body.constraints = RigidbodyConstraints2D.None;
+                cling = false;
+                body.velocity = new Vector2(0, 0);
+                body.AddForce(transform.up * jumpForce);
+                Debug.Log("Triggered Jump");
+            }
+            else if (jumpTimer > 20)
+            {
+                body.constraints = RigidbodyConstraints2D.None;
+                cling = false;
+                body.velocity = new Vector2(0, 0);
+                body.AddForce(transform.up * jumpForce);
+            }
         }
         if (body.velocity.magnitude < 5 && cling == true)
         {
@@ -78,9 +91,8 @@ public class Leaper : Enemies
                 body.AddForce(Vector2.up * n);
             }
         }
-        
+        base.Update();
     }
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
         ContactPoint2D point = collision.GetContact(0);
@@ -121,5 +133,15 @@ public class Leaper : Enemies
                 transform.rotation = Quaternion.AngleAxis(90, Vector3.forward);
             }
         }
+        
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Player>().DealDamage(10);
+        }
+    }
+
+    public void InRange(bool _b)
+    {
+        playerInRange = _b;
     }
 }
