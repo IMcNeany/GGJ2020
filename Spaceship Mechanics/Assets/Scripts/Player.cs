@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
             body.AddForce(-transform.up * 100);
         }
 
-        healthbar.health = health/maxHealth;
+        healthbar.fill = health/maxHealth;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
