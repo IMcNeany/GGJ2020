@@ -31,10 +31,14 @@ public class MagneticTool : PlayerEquipment
 
     public override void StopSecondaryFire()
     {
+        if(current_reload > 0)
+        {
+            return;
+        }
         charge_light.pointLightOuterRadius = 0.0f;
         Vector2 current_position = transform.position;
         magnetic_area.GetComponent<MagneticArea>().Pulse(current_charge * 10.0f);
-        transform.parent.GetComponent<Rigidbody2D>().AddForce(transform.up * -current_charge * 10.0f);
+        transform.parent.GetComponent<Rigidbody2D>().AddForce(transform.up * -current_charge * 20.0f);
         magnetic_area.SetActive(false);
         current_reload = reload_time;
         current_charge = 0.0f;
