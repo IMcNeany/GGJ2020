@@ -17,19 +17,23 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.W))
         {
-            body.AddForce(Vector2.up * speed * Time.deltaTime);
+            body.AddForce(transform.up * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            body.AddForce(Vector2.left * speed * Time.deltaTime);
+            body.AddForce(-transform.right * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            body.AddForce(Vector2.down * speed * Time.deltaTime);
+            body.AddForce(-transform.up * speed * Time.deltaTime);
         }
         if (Input.GetKey(KeyCode.D))
         {
-            body.AddForce(Vector2.right * speed * Time.deltaTime);
+            body.AddForce(transform.right * speed * Time.deltaTime);
         }
+
+        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
+        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }
