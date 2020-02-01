@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
 {
     public float speed = 1.0f;
     private Rigidbody2D body;
+    public GameObject laser;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,5 +36,11 @@ public class Player : MonoBehaviour
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
         float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GameObject newLaser = Instantiate(laser, transform.position + transform.up * 0.45f, this.transform.rotation);
+            body.AddForce(-transform.up * 100);
+        }
     }
 }
