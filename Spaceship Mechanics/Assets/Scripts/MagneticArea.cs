@@ -4,19 +4,30 @@ using UnityEngine;
 
 public class MagneticArea : MonoBehaviour
 {
-    public List<GameObject> held_objects;
+    private List<Rigidbody2D> held_rigids;
     public float magnetic_strength = 5.0f;
 
+    private void Awake()
+    {
+        if (held_rigids == null)
+        {
+            held_rigids = new List<Rigidbody2D>();
+        }
+    }
     private void OnDisable()
     {
-        held_objects = new List<GameObject>();
+        held_rigids = new List<Rigidbody2D>();
     }
 
     private void Update()
     {
-        for(int i = 0; i < held_objects.Count; i++)
+        for(int i = 0; i < held_rigids.Count; i++)
         {
-            held_objects[i].transform.position = Vector2.Lerp(held_objects[i].transform.position, transform.position, 1 / magnetic_strength);
+            if(held_rigids[i].velocity.magnitude > 20.0f)
+            {
+                return;
+            }
+            held_rigids[i].AddForce((transform.position - held_rigids[i].transform.position).normalized * magnetic_strength);
         }
     }
 
@@ -24,28 +35,31 @@ public class MagneticArea : MonoBehaviour
     {
         if(collision.tag == "Debris")
         {
-            held_objects.Add(collision.gameObject);
+            if(collision.gameObject.GetComponent<Rigidbody2D>() != null)
+            {
+                held_rigids.Add(collision.gameObject.GetComponent<Rigidbody2D>());
+            }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
-        for(int i = 0; i < held_objects.Count; i++)
+        for(int i = 0; i < held_rigids.Count; i++)
         {
-            if(held_objects[i] == other.gameObject)
+            if(held_rigids[i] == other.gameObject.GetComponent<Rigidbody2D>())
             {
-                held_objects.RemoveAt(i);
+                held_rigids.RemoveAt(i);
             }
         }
     }
 
     public void Pulse(float strength)
     {
-        for(int i = 0; i < held_objects.Count; i++)
+        for(int i = 0; i < held_rigids.Count; i++)
         {
-            held_objects[i].GetComponent<Rigidbody2D>().AddForce(transform.parent.parent.up * strength);
+            held_rigids[i].AddForce(transform.parent.parent.up * strength);
             
         }
-        held_objects = new List<GameObject>();
+        held_rigids = new List<Rigidbody2D>();
     }
 }

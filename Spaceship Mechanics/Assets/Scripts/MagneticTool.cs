@@ -33,7 +33,7 @@ public class MagneticTool : PlayerEquiptment
         charge_area.SetActive(false);
         Vector2 current_position = transform.position;
         charge_area.transform.localPosition = start_area;
-        magnetic_area.GetComponent<MagneticArea>().Pulse(current_charge * 30.0f);
+        magnetic_area.GetComponent<MagneticArea>().Pulse(current_charge * 10.0f);
         magnetic_area.SetActive(false);
         current_reload = 0.0f;
         current_charge = 0.0f;

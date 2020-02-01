@@ -53,14 +53,16 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            GameObject newLaser = Instantiate(laser, transform.position + transform.up * 0.45f, this.transform.rotation);
-            Vector2 impulse = transform.up * 100;
-            newLaser.GetComponent<Laser>().launchSpeed = impulse;
-            body.AddForce(-impulse);
+            //GameObject newLaser = Instantiate(laser, transform.position + transform.up * 0.45f, this.transform.rotation);
+            //Vector2 impulse = transform.up * 100;
+            //newLaser.GetComponent<Laser>().launchSpeed = impulse;
+            //body.AddForce(-impulse);
             current_equiptment.Fire();
         }
-
-        healthbar.fill = health/maxHealth;
+        if(healthbar)
+        {
+            healthbar.fill = health / maxHealth;
+        }
         if(Input.GetMouseButtonUp(0))
         {
             current_equiptment.StopFire();
