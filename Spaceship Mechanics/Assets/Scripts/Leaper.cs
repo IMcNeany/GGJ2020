@@ -49,17 +49,12 @@ public class Leaper : Enemies
         {
             if (playerInRange)
             {
-                body.constraints = RigidbodyConstraints2D.None;
-                cling = false;
-                body.velocity = new Vector2(0, 0);
-                body.AddForce(transform.up * jumpForce);
+                Leap();
                 Debug.Log("Triggered Jump");
             }
             else if (jumpTimer > 20)
             {
-                body.constraints = RigidbodyConstraints2D.None;
-                cling = false;
-                body.velocity = new Vector2(0, 0);
+                Leap();
                 body.AddForce(transform.up * jumpForce);
             }
         }
@@ -93,6 +88,15 @@ public class Leaper : Enemies
         }
         base.Update();
     }
+
+    private void Leap()
+    {
+        body.constraints = RigidbodyConstraints2D.None;
+        cling = false;
+        body.velocity = new Vector2(0, 0);
+        body.AddForce(transform.up * jumpForce);
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         ContactPoint2D point = collision.GetContact(0);
@@ -139,6 +143,14 @@ public class Leaper : Enemies
         {
             collision.gameObject.GetComponent<Player>().DealDamage(10);
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        //if (collision.gameObject.CompareTag("Wall"))
+        //{
+        //    Leap();
+        //}
     }
 
     public void InRange(bool _b)
