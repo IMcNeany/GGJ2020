@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MagneticTool : PlayerEquiptment
+public class MagneticTool : PlayerEquipment
 {
     public GameObject magnetic_area;
     public GameObject charge_area;
@@ -15,11 +15,13 @@ public class MagneticTool : PlayerEquiptment
 
     public override void Fire()
     {
-        if(current_reload < reload_time)
+        if(current_reload > 0)
         {
             return;
         }
         magnetic_area.SetActive(true);
+
+        base.Fire();
     }
 
 

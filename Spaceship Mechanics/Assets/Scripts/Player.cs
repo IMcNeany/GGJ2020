@@ -17,7 +17,8 @@ public class Player : MonoBehaviour
     private Rigidbody2D body;
     public HealthBar healthbar;
     public HealthBar fuelBar;
-    public PlayerEquiptment current_equiptment;
+    public int equipIndex;
+    public List<PlayerEquipment> equipment;
     
     void Start()
     {
@@ -25,6 +26,14 @@ public class Player : MonoBehaviour
         health = maxHealth;
         alive = true;
         fuel = maxFuel;
+        equipment = new List<PlayerEquipment>();
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).GetComponent<PlayerEquipment>())
+            {
+                equipment.Add(transform.GetChild(i).GetComponent<PlayerEquipment>());
+            }
+        }
     }
 
     void Update()
@@ -62,11 +71,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            //GameObject newLaser = Instantiate(laser, transform.position + transform.up * 0.45f, this.transform.rotation);
-            //Vector2 impulse = transform.up * 100;
-            //newLaser.GetComponent<Laser>().launchSpeed = impulse;
-            //body.AddForce(-impulse);
-            current_equiptment.Fire();
+            equipment[equipIndex].Fire();
         }
 
         if(healthbar)
@@ -80,23 +85,34 @@ public class Player : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0))
         {
-            current_equiptment.StopFire();
+            equipment[equipIndex].StopFire();
         }
         if (Input.GetMouseButton(0))
         {
-            current_equiptment.FireHeld();
+            equipment[equipIndex].FireHeld();
         }
         if (Input.GetMouseButtonDown(1))
         {
-            current_equiptment.SecondaryFire();
+            equipment[equipIndex].SecondaryFire();
         }
         if(Input.GetMouseButtonUp(1))
         {
-            current_equiptment.StopSecondaryFire();
+            equipment[equipIndex].StopSecondaryFire();
         }
         if(Input.GetMouseButton(1))
         {
-            current_equiptment.SecondaryFireHeld();
+            equipment[equipIndex].SecondaryFireHeld();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            equipment[equipIndex].gameObject.SetActive(false);
+            equipIndex++;
+            if (equipIndex >= equipment.Count)
+            {
+                equipIndex = 0;
+            }
+            equipment[equipIndex].gameObject.SetActive(true);
         }
 
     }
