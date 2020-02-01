@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float speed = 1.0f;
+    [SerializeField] private float speed = 1.0f;
     private Rigidbody2D body;
     public GameObject laser;
+    [SerializeField] private float maxHealth = 100;
+    private float health;
+    public HealthBar healthbar;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        health = maxHealth;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.W))
+        if (health <= 0)
+        {
+            //DEAD
+        }
+
+        if (Input.GetKey(KeyCode.W))       //booster input
         {
             body.AddForce(transform.up * speed * Time.deltaTime);
         }
@@ -33,14 +42,24 @@ public class Player : MonoBehaviour
             body.AddForce(transform.right * speed * Time.deltaTime);
         }
 
-        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);
+        Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);     //look rotation
         float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
         transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))        //laser control
         {
             GameObject newLaser = Instantiate(laser, transform.position + transform.up * 0.45f, this.transform.rotation);
             body.AddForce(-transform.up * 100);
+        }
+
+        healthbar.health = health/maxHealth;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (body.velocity.magnitude > 10)
+        {
+            health -= 10;
         }
     }
 }
