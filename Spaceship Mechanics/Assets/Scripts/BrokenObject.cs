@@ -19,7 +19,7 @@ public class BrokenObject : MonoBehaviour
         GetComponent<SpriteRenderer>().sprite = broken_sprite;
         broken = true;
         GameObject image_obj = Instantiate(progress_prefab, image_location.transform.position, transform.rotation) as GameObject;
-        image_obj.transform.parent = GameObject.Find("Canvas").gameObject.transform;
+        image_obj.transform.parent = GameObject.Find("WorldCanvas").gameObject.transform;
         
         progress_image = image_obj.transform.GetChild(0).GetComponent<Image>();
         progress_image.fillAmount = 0.0f;
