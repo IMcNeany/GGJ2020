@@ -4225,5 +4225,37 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 3786814260649570409, guid: 8356aef617a82324dad9e567fe8217f6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c1e8016a345388408f2a315e183bb97,
+        type: 3}
+    - target: {fileID: 3786814260049380321, guid: 8356aef617a82324dad9e567fe8217f6,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 2c1e8016a345388408f2a315e183bb97,
+        type: 3}
+    - target: {fileID: 3786814260049380321, guid: 8356aef617a82324dad9e567fe8217f6,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.032508902
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786814260049380321, guid: 8356aef617a82324dad9e567fe8217f6,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6132076
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786814260049380321, guid: 8356aef617a82324dad9e567fe8217f6,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3786814260049380321, guid: 8356aef617a82324dad9e567fe8217f6,
+        type: 3}
+      propertyPath: m_FillAmount
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8356aef617a82324dad9e567fe8217f6, type: 3}

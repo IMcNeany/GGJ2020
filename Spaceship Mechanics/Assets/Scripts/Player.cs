@@ -10,19 +10,22 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHealth = 100;
     private float health;
     public HealthBar healthbar;
+    private bool alive;
     // Start is called before the first frame update
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         health = maxHealth;
+        alive = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health <= 0)
+        if (health <= 0 && alive)
         {
-            //DEAD
+            Debug.Log("You are dead");
+            Destroy(gameObject);
         }
 
         if (Input.GetKey(KeyCode.W))       //booster input

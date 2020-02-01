@@ -65,7 +65,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: 9290e92dbd820784998098465e8996c9, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c1e8016a345388408f2a315e183bb97, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -140,7 +140,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: be1483dca0135bc4dac49caf15fd78f2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2c1e8016a345388408f2a315e183bb97, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -161,7 +161,7 @@ GameObject:
   - component: {fileID: 3786814261494946729}
   - component: {fileID: 3786814261494946728}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: Depletable Bar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -200,6 +200,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6906edecbad103741944e5b676fef735, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  backBar: {fileID: 0}
-  fullBar: {fileID: 0}
   health: 0
