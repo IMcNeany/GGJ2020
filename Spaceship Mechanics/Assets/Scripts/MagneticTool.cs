@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.LWRP;
 
-public class MagneticTool : PlayerEquiptment
+public class MagneticTool : PlayerEquipment
 {
     public GameObject magnetic_area;
     public Light2D charge_light;
@@ -16,7 +16,7 @@ public class MagneticTool : PlayerEquiptment
 
     public override void Fire()
     {
-        if(current_reload < reload_time)
+        if(current_reload > 0)
         {
             return;
         }
@@ -35,7 +35,7 @@ public class MagneticTool : PlayerEquiptment
         Vector2 current_position = transform.position;
         magnetic_area.GetComponent<MagneticArea>().Pulse(current_charge * 10.0f);
         magnetic_area.SetActive(false);
-        current_reload = 0.0f;
+        current_reload = reload_time;
         current_charge = 0.0f;
     }
 

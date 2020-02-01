@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerEquiptment : MonoBehaviour
+public class PlayerEquipment : MonoBehaviour
 {
     public float reload_time;
     protected float current_reload = 0.0f;
@@ -14,15 +14,15 @@ public class PlayerEquiptment : MonoBehaviour
 
     private void Update()
     {
-        if(current_reload < reload_time)
+        if(current_reload > 0)
         {
-            current_reload += 1 * Time.deltaTime;
+            current_reload -= Time.deltaTime;
         }
     }
 
     virtual public void Fire()
     {
-
+        current_reload = reload_time;
     }
 
     virtual public void SecondaryFire()
