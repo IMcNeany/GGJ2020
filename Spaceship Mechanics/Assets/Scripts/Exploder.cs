@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class Exploder : Enemies
 {
-
     public GameObject explosion;
     public GameObject hit;
     public float timer = 3.0f;
+    private Player players_health;
+    private float damage = 49.0f;
+    public GameObject player;
 
     void Start()
     {
@@ -43,8 +45,15 @@ public class Exploder : Enemies
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Player")
         {
+            //players_health.tag = "Player";
+            //players_health.DealDamage(damage);
+
+            //player.gameObject.tag = "Player";
+
+            //GameObject.Find("Player").GetComponent<Player>().enabled = true;
+
             Hit();
         }
     }
@@ -67,7 +76,6 @@ public class Exploder : Enemies
         }
     }
 
-
     // bellow is for explosioions
     void Hit()
     {
@@ -75,19 +83,21 @@ public class Exploder : Enemies
         {
             //big explosion
             //players health gets set down
-            Instantiate(explosion, transform.position, Quaternion.identity);
-            gameObject.SetActive(false);
 
+            Instantiate(explosion, transform.position, Quaternion.identity);
+            explosion.SetActive(true);
+            gameObject.SetActive(false);
+    
         }
     }
 
     void Timer()
     {
-        timer -= Time.deltaTime;
-        if (timer < 0)
-        {
-            Debug.Log("why");
-            explosion.SetActive(false);
-        }
+        //timer -= Time.deltaTime;
+        //if (timer < 0)
+        //{
+        //    Debug.Log("why");
+        //    explosion.SetActive(false);
+        //}
     }
 }
