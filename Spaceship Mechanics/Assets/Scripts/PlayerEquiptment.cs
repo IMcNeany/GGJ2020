@@ -7,6 +7,10 @@ public class PlayerEquiptment : MonoBehaviour
     public float reload_time;
     protected float current_reload = 0.0f;
 
+    private void Awake()
+    {
+        current_reload = reload_time;
+    }
 
     private void Update()
     {

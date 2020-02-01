@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class MagneticTool : PlayerEquiptment
 {
     public GameObject magnetic_area;
-    public GameObject charge_area;
+    public Light2D charge_light;
     public Vector2 start_area;
     public Vector2 end_area;
     public float max_charge = 10.0f;
@@ -30,9 +31,8 @@ public class MagneticTool : PlayerEquiptment
 
     public override void StopSecondaryFire()
     {
-        charge_area.SetActive(false);
+        charge_light.pointLightOuterRadius = 0.0f;
         Vector2 current_position = transform.position;
-        charge_area.transform.localPosition = start_area;
         magnetic_area.GetComponent<MagneticArea>().Pulse(current_charge * 10.0f);
         magnetic_area.SetActive(false);
         current_reload = 0.0f;
@@ -45,10 +45,10 @@ public class MagneticTool : PlayerEquiptment
         {
             return;
         }
-        charge_area.SetActive(true);
         current_charge += charge_speed * Time.deltaTime;
         Vector2 current_position = transform.position;
-        charge_area.transform.localPosition = Vector2.Lerp(start_area, end_area, current_charge / 10.0f);
+
+        charge_light.pointLightOuterRadius = current_charge / 4;
         if(current_charge >= max_charge)
         {
             current_charge = max_charge;
