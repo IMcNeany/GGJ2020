@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private float speed = 1.0f;
-    private Rigidbody2D body;
-    public GameObject laser;
+    [Header("Player Stats")]
+    [SerializeField] private float speed = 10.0f;
     [SerializeField] private float maxHealth = 100;
     private float health;
-    public HealthBar healthbar;
     private bool alive;
-    // Start is called before the first frame update
+
+    [Header("Unity Stuff")]
+    public GameObject laser;
+    private Rigidbody2D body;
+    public HealthBar healthbar;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -19,7 +22,6 @@ public class Player : MonoBehaviour
         alive = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (health <= 0 && alive)
@@ -52,7 +54,9 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))        //laser control
         {
             GameObject newLaser = Instantiate(laser, transform.position + transform.up * 0.45f, this.transform.rotation);
-            body.AddForce(-transform.up * 100);
+            Vector2 impulse = transform.up * 100;
+            newLaser.GetComponent<Laser>().launchSpeed = impulse;
+            body.AddForce(-impulse);
         }
 
         healthbar.fill = health/maxHealth;
@@ -60,9 +64,20 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (body.velocity.magnitude > 10)
+        ContactPoint2D point = collision.GetContact(0);
+        if (point.normal.y > 0.3 || point.normal.y < -0.3)
         {
-            health -= 10;
+            if (body.velocity.y > 10 || body.velocity.y < -10)
+            {
+                health -= 10;
+            }
+        }
+        if (point.normal.x > 0.3 || point.normal.x < -0.3)
+        {
+            if (body.velocity.x > 10 || body.velocity.x < -10)
+            {
+                health -= 10;
+            }
         }
     }
 }

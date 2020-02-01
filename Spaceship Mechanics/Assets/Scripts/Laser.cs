@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Laser : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public Vector2 launchSpeed;
     void Start()
     {
         GetComponent<Rigidbody2D>().AddForce(transform.up * 100);
