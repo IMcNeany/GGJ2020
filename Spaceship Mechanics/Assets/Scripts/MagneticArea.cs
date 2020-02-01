@@ -6,6 +6,8 @@ public class MagneticArea : MonoBehaviour
 {
     private List<Rigidbody2D> held_rigids;
     public float magnetic_strength = 5.0f;
+    public GameObject broken_object;
+    private BrokenObject broken_script;
 
     private void Awake()
     {
@@ -32,18 +34,42 @@ public class MagneticArea : MonoBehaviour
 
     private void Update()
     {
+        if(broken_script)
+        {
+            if (broken_script.broken == false)
+            {
+                broken_script = null;
+                broken_object = null;
+            }
+        }
         for(int i = 0; i < held_rigids.Count; i++)
         {
             if(held_rigids[i].velocity.magnitude > 20.0f)
             {
                 return;
             }
-            held_rigids[i].AddForce((transform.position - held_rigids[i].transform.position).normalized * magnetic_strength);
+            if(broken_object)
+            {
+                held_rigids[i].AddForce((broken_object.transform.position - held_rigids[i].transform.position).normalized * magnetic_strength);
+            }
+            else
+            {
+                held_rigids[i].AddForce((transform.position - held_rigids[i].transform.position).normalized * magnetic_strength);
+            }
+
         }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if(collision.tag == "Fixable")
+        {
+            if(broken_object == null && collision.gameObject.GetComponent<BrokenObject>().broken == true)
+            {
+                broken_object = collision.gameObject;
+                broken_script = broken_object.GetComponent<BrokenObject>();
+            }
+        }
         if(collision.tag == "Debris")
         {
             if(collision.gameObject.GetComponent<Rigidbody2D>() != null)
@@ -56,6 +82,11 @@ public class MagneticArea : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
+        if(other.tag == "Fixable")
+        {
+            broken_object = null;
+            broken_script = null;
+        }
         for(int i = 0; i < held_rigids.Count; i++)
         {
             if(held_rigids[i] == other.gameObject.GetComponent<Rigidbody2D>())

@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Debris
+  - Wall
+  - Fixable
   layers:
   - Default
   - TransparentFX

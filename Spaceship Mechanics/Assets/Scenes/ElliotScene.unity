@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 319055184}
   m_Layer: 0
   m_Name: BrokenWall
-  m_TagString: Untagged
+  m_TagString: Fixable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,6 +235,7 @@ MonoBehaviour:
   broken_sprite: {fileID: 21300000, guid: 7c7589a017ddd364d8cd9659b823e1c5, type: 3}
   fixed_sprite: {fileID: 0}
   debris_needed: 2
+  broken: 1
 --- !u!4 &319055187
 Transform:
   m_ObjectHideFlags: 0
@@ -243,7 +244,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 319055183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.625, y: -0.266, z: 0}
+  m_LocalPosition: {x: -3.174, y: 1.606, z: 0}
   m_LocalScale: {x: -1.5500163, y: 1.5166501, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

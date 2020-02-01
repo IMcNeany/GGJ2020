@@ -8,7 +8,7 @@ public class BrokenObject : MonoBehaviour
     public Sprite fixed_sprite;
     public int debris_needed = 2;
     private int current_debris = 0;
-    private bool broken;
+    public bool broken = true;
 
     private void Awake()
     {
@@ -21,11 +21,6 @@ public class BrokenObject : MonoBehaviour
         if (current_debris >= debris_needed)
         {
             return;
-        }
-        if (collision.attachedRigidbody.velocity.magnitude > 10.0f)
-        {
-            Debug.Log("Ouch " + collision.attachedRigidbody.velocity.magnitude);
-            collision.gameObject.GetComponent<DebrisChecker>().DestroyDebris();
         }
         else
         {
@@ -45,6 +40,7 @@ public class BrokenObject : MonoBehaviour
         if(current_debris >= debris_needed)
         {
             GetComponent<SpriteRenderer>().sprite = fixed_sprite;
+            broken = false;
         }
     }
 }
