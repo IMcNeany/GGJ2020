@@ -42,7 +42,7 @@ public class MagneticTool : PlayerEquipment
 
     public override void SecondaryFireHeld()
     {
-        if (current_reload > 0)
+        if (current_reload > 0 || magnetic_area.activeSelf == false)
         {
             return;
         }
