@@ -105,8 +105,8 @@ GameObject:
   - component: {fileID: 8940795829208897484}
   - component: {fileID: 8940795829208897487}
   - component: {fileID: 8940795829208897485}
-  - component: {fileID: 5714404092700496846}
   - component: {fileID: 9114066610372028212}
+  - component: {fileID: 460695806801548787}
   m_Layer: 0
   m_Name: Creeper_Enemy
   m_TagString: Untagged
@@ -200,23 +200,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5714404092700496846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8940795829208897486}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fddffac8055f104881e8b3ef5445474, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0.4
-  enemy_health: 5
-  walking_distance: 10
-  circle_collider: {fileID: 3610099519994634283}
-  box_collider: {fileID: 2449379807755785066}
 --- !u!58 &9114066610372028212
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -233,3 +216,20 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.3125
+--- !u!114 &460695806801548787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8940795829208897486}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123bc54bd595e1b4d88e1d6e4dc4c27d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 1
+  enemy_health: 5
+  walking_distance: 10
+  circle_collider: {fileID: 3610099519994634283}
+  box_collider: {fileID: 2449379807755785066}
