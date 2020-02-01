@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class Player : MonoBehaviour
 {
@@ -11,14 +12,18 @@ public class Player : MonoBehaviour
     private bool alive;
     [SerializeField] private float maxFuel = 100;
     private float fuel;
+    [SerializeField] private float maxO2 = 100;
+    private float O2;
 
     [Header("Unity Stuff")]
     public GameObject laser;
     private Rigidbody2D body;
     public HealthBar healthbar;
     public HealthBar fuelBar;
+    public HealthBar o2Bar;
     public int equipIndex;
     public List<PlayerEquipment> equipment;
+    public Light2D light;
     
     void Start()
     {
@@ -26,6 +31,7 @@ public class Player : MonoBehaviour
         health = maxHealth;
         alive = true;
         fuel = maxFuel;
+        O2 = maxO2;
         equipment = new List<PlayerEquipment>();
         for (int i = 0; i < transform.childCount; i++)
         {
@@ -34,10 +40,17 @@ public class Player : MonoBehaviour
                 equipment.Add(transform.GetChild(i).GetComponent<PlayerEquipment>());
             }
         }
+        light = GetComponentInChildren<Light2D>();
     }
 
     void Update()
     {
+        O2 -= Time.deltaTime;
+
+        if (O2 <= 0)
+        {
+            health -= Time.deltaTime;
+        }
         if (health <= 0 && alive)
         {
             Debug.Log("You are dead");
@@ -74,7 +87,7 @@ public class Player : MonoBehaviour
             equipment[equipIndex].Fire();
         }
 
-        if(healthbar)
+        if(healthbar)       //bars
         {
             healthbar.fill = health / maxHealth;
         }
@@ -82,8 +95,17 @@ public class Player : MonoBehaviour
         {
             fuelBar.fill = fuel / maxFuel;
         }
+        if (o2Bar)
+        {
+            o2Bar.fill = O2 / maxO2;
+        }
 
-        if (Input.GetMouseButtonUp(0))
+        if (O2 / maxO2 <= 0.5 && O2 / maxO2 > 0.1)
+        {
+            light.intensity = (O2 * 2) / maxO2;
+        }
+
+        if (Input.GetMouseButtonUp(0))      //mouse control
         {
             equipment[equipIndex].StopFire();
         }
@@ -104,7 +126,7 @@ public class Player : MonoBehaviour
             equipment[equipIndex].SecondaryFireHeld();
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space))        //equipment shopping
         {
             equipment[equipIndex].gameObject.SetActive(false);
             equipIndex++;
