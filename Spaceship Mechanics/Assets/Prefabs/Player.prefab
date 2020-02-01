@@ -117,8 +117,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  maxHealth: 100
   laser: {fileID: 8241918036756072768, guid: 5e1fc78226bb0b6489da3c201bf610fc, type: 3}
-  health: 100
   healthbar: {fileID: 0}
 --- !u!58 &-8949573444584517370
 CircleCollider2D:
