@@ -7,6 +7,7 @@ public class Exploder : Enemies
 
     public GameObject explosion;
     public GameObject hit;
+    public float timer = 3.0f;
 
     void Start()
     {
@@ -66,6 +67,8 @@ public class Exploder : Enemies
         }
     }
 
+
+    // bellow is for explosioions
     void Hit()
     {
         if (hit)
@@ -73,7 +76,18 @@ public class Exploder : Enemies
             //big explosion
             //players health gets set down
             Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(this.gameObject);
+            gameObject.SetActive(false);
+
+        }
+    }
+
+    void Timer()
+    {
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            Debug.Log("why");
+            explosion.SetActive(false);
         }
     }
 }
