@@ -44,3 +44,6 @@ TagManager:
   - name: Debris
     uniqueID: 362566723
     locked: 0
+  - name: Interactables
+    uniqueID: 986997245
+    locked: 0
