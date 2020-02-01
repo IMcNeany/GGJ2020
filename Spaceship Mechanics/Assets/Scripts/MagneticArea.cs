@@ -101,6 +101,7 @@ public class MagneticArea : MonoBehaviour
     {
         for(int i = 0; i < held_rigids.Count; i++)
         {
+            held_rigids[i].velocity = Vector2.zero;
             held_rigids[i].AddForce(transform.parent.parent.up * strength);
             
         }
