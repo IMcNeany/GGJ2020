@@ -9,17 +9,22 @@ public class Player : MonoBehaviour
     [SerializeField] private float maxHealth = 100;
     private float health;
     private bool alive;
+    [SerializeField] private float maxFuel = 100;
+    private float fuel;
 
     [Header("Unity Stuff")]
     public GameObject laser;
     private Rigidbody2D body;
     public HealthBar healthbar;
+    public HealthBar fuelBar;
     public PlayerEquiptment current_equiptment;
+    
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
         health = maxHealth;
         alive = true;
+        fuel = maxFuel;
     }
 
     void Update()
@@ -32,19 +37,23 @@ public class Player : MonoBehaviour
 
         if (Input.GetKey(KeyCode.W))       //booster input
         {
-            body.AddForce(transform.up * speed * Time.deltaTime);
+            body.AddForce(Vector2.up * speed * Time.deltaTime);
+            fuel -= Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            body.AddForce(-transform.right * speed * Time.deltaTime);
+            body.AddForce(-Vector2.right * speed * Time.deltaTime);
+            fuel -= Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.S))
         {
-            body.AddForce(-transform.up * speed * Time.deltaTime);
+            body.AddForce(-Vector2.up * speed * Time.deltaTime);
+            fuel -= Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.D))
         {
-            body.AddForce(transform.right * speed * Time.deltaTime);
+            body.AddForce(Vector2.right * speed * Time.deltaTime);
+            fuel -= Time.deltaTime;
         }
 
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);     //look rotation
@@ -59,11 +68,17 @@ public class Player : MonoBehaviour
             //body.AddForce(-impulse);
             current_equiptment.Fire();
         }
+
         if(healthbar)
         {
             healthbar.fill = health / maxHealth;
         }
-        if(Input.GetMouseButtonUp(0))
+        if (fuelBar)
+        {
+            fuelBar.fill = fuel / maxFuel;
+        }
+
+        if (Input.GetMouseButtonUp(0))
         {
             current_equiptment.StopFire();
         }
