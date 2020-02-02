@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.LWRP;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -66,6 +67,7 @@ public class Player : MonoBehaviour
         if (health <= 0 && alive)
         {
             Debug.Log("You are dead");
+            SceneManager.LoadScene(2);
             Destroy(gameObject);
         }
         if (fuel > 0)
