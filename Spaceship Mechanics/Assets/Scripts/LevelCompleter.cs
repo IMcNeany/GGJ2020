@@ -12,6 +12,7 @@ public class LevelCompleter : MonoBehaviour
     public List<Door> doors;
     public Light2D room_light;
     public bool has_oxygen = false;
+    public bool check_sound = false;
     //list of doors?
 
     private void Awake()
@@ -43,7 +44,14 @@ public class LevelCompleter : MonoBehaviour
             room_light.intensity = 0.5f;
             has_oxygen = true;
 
+            if(check_sound == false)
+            {
+                AudioSource audio = GetComponent<AudioSource>();
+                audio.PlayOneShot(audio.clip);
+                check_sound = true;
+            }
         }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

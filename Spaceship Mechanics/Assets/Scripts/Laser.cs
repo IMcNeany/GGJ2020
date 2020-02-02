@@ -5,9 +5,13 @@ using UnityEngine;
 public class Laser : MonoBehaviour
 {
     public Vector2 launchSpeed;
+    private AudioSource audio;
     void Start()
     {
         GetComponent<Rigidbody2D>().AddForce(transform.up * 100);
+        audio = GetComponent<AudioSource>();
+        audio.pitch = Random.Range(0.3f, 0.7f);
+        audio.PlayOneShot(audio.clip);
     }
 
     // Update is called once per frame
