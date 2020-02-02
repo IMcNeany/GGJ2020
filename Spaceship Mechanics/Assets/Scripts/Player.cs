@@ -202,6 +202,10 @@ public class Player : MonoBehaviour
     {
         equipment.Add(_equip);
         _equip.transform.parent = transform;
+        _equip.transform.rotation = transform.rotation;
+        _equip.transform.localPosition = new Vector3(0.15f, 0.18f, 0f);
+        _equip.GetComponent<BoxCollider2D>().enabled = false;
+        _equip.gameObject.SetActive(false);
     }
 
     public void DealDamage(float _dam)
@@ -219,3 +223,4 @@ public class Player : MonoBehaviour
         fuel += _Gain;
     }
 }
+

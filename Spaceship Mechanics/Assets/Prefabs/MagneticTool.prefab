@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8615348118132002618}
   - component: {fileID: 1939136324306787528}
   - component: {fileID: 269673698113367850}
+  - component: {fileID: 4623250501526532418}
   m_Layer: 0
   m_Name: MagneticTool
   m_TagString: Untagged
@@ -97,12 +98,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   reload_time: 2
+  floor: 0
   magnetic_area: {fileID: 7598729846784371207}
   charge_light: {fileID: 1964487680210649856}
   start_area: {x: -2.9, y: 0}
   end_area: {x: 0, y: 0}
   max_charge: 10
   charge_speed: 5
+--- !u!61 &4623250501526532418
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1744334196600516010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.28, y: 0.49}
+    newSize: {x: 0.28, y: 0.49}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.28, y: 0.49}
+  m_EdgeRadius: 0
 --- !u!1 &1964487680210649863
 GameObject:
   m_ObjectHideFlags: 0
