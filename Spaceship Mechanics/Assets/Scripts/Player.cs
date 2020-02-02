@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         {
             if(current_level.has_oxygen == true)
             {
-                O2 += Time.deltaTime * 2;
+                O2 += Time.deltaTime * 10;
                 if (O2 > maxO2)
                 {
                     O2 = maxO2;
