@@ -237,3 +237,4 @@ MonoBehaviour:
     type: 3}
   hit: {fileID: 2449379807755785066}
   timer: 3
+  player: {fileID: 3157957787007728729, guid: b8a7e4d6efe99184fa85c4494f739d94, type: 3}

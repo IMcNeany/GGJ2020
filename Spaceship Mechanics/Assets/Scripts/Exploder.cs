@@ -84,20 +84,20 @@ public class Exploder : Enemies
             //big explosion
             //players health gets set down
 
-            Instantiate(explosion, transform.position, Quaternion.identity);
-            explosion.SetActive(true);
+            explosion = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(explosion, 1.0f);
             gameObject.SetActive(false);
-    
+            Timer();
         }
     }
 
     void Timer()
     {
-        //timer -= Time.deltaTime;
-        //if (timer < 0)
-        //{
-        //    Debug.Log("why");
-        //    explosion.SetActive(false);
-        //}
+        timer -= Time.deltaTime;
+        if (timer < 0)
+        {
+            explosion.SetActive(false);
+            explosion.gameObject.SetActive(false);
+        }
     }
 }
