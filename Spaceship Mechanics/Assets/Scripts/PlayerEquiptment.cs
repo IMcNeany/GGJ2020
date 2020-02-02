@@ -6,14 +6,14 @@ public class PlayerEquipment : MonoBehaviour
 {
     public float reload_time;
     protected float current_reload = 0.0f;
-    [SerializeField] private bool floor;
+    [SerializeField] protected bool floor;
 
     private void Awake()
     {
         current_reload = reload_time;
     }
 
-    private void Update()
+    public virtual void Update()
     {
         if(current_reload > 0)
         {
