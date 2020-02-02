@@ -213,4 +213,9 @@ public class Player : MonoBehaviour
     {
         health += _Gain;
     }
+
+    public void GainFuel(float _Gain)
+    {
+        fuel += _Gain;
+    }
 }
