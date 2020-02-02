@@ -19,7 +19,10 @@ public class WinStateTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Invoke("WinTransition", 2.0f);
+        if(collision.tag == "Player")
+        {
+            Invoke("WinTransition", 2.0f);
+        }
     }
 
     void WinTransition()
