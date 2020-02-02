@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public int equipIndex;
     public List<PlayerEquipment> equipment;
     private Light2D glowLight;
+    [SerializeField] private LevelCompleter current_level;
     
     void Start()
     {
@@ -46,19 +47,26 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        //if (room.hasO2)       //Todo: add gaining oxygen
-        //{
-        //    O2 += Time.deltaTime * 2;
-        //    if (O2 > maxO2)
-        //    {
-        //        O2 = maxO2;
-        //    }
-        //}
-        //else
-        //{
+        if(current_level == true)
+        {
+            if(current_level.has_oxygen == true)
+            {
+                O2 += Time.deltaTime * 2;
+                if (O2 > maxO2)
+                {
+                    O2 = maxO2;
+                }
+            }
+            else
+            {
+                O2 -= Time.deltaTime;
+            }
+        }
+        else
+        {
             O2 -= Time.deltaTime;
-        //}
-        
+        }
+
 
         if (O2 <= 0)
         {
@@ -171,6 +179,22 @@ public class Player : MonoBehaviour
             {
                 health -= 10;
             }
+        }
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if(collision.tag == "Level")
+        {
+            current_level = collision.GetComponent<LevelCompleter>();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if(collision.GetComponent<LevelCompleter>() == current_level)
+        {
+            current_level = null;
         }
     }
 

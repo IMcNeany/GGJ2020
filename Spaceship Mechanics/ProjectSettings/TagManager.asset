@@ -8,6 +8,7 @@ TagManager:
   - Wall
   - Fixable
   - Enemy
+  - Level
   layers:
   - Default
   - TransparentFX

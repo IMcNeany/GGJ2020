@@ -25,23 +25,25 @@ public class LightFlickerer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(flicker_timer == 0.0f)
-        {
-            flicker();
-        }
+        flicker();
     }
 
     private void flicker()
     {
-        flicker_timer = Random.Range(0.0f, 8.0f);
-        flicker_timer -= 1 * Time.deltaTime;
+        if(flicker_timer <= 0.0f)
+        {
+            flicker_timer = Random.Range(0.5f, 8.0f);
+            flicker_delay = Random.Range(0.2f, 1.0f);
+        }
         if (flicker_timer <= flicker_delay && flicker_timer > 0.0f)
         {
-            current_light.intensity = 0.5f;
+            current_light.intensity = 0.0f;
         }
         else
         {
             current_light.intensity = original_intensity;
         }
+
+        flicker_timer -= 1 * Time.deltaTime;
     }
 }

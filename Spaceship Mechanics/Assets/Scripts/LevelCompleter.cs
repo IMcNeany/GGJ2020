@@ -11,6 +11,7 @@ public class LevelCompleter : MonoBehaviour
     public List<BrokenObject> broken_parts;
     public List<Door> doors;
     public Light2D room_light;
+    public bool has_oxygen = false;
     //list of doors?
 
     private void Awake()
@@ -40,6 +41,7 @@ public class LevelCompleter : MonoBehaviour
                 doors[i].UpdateLights();
             }
             room_light.intensity = 0.5f;
+            has_oxygen = true;
 
         }
     }
