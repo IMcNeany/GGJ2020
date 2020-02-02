@@ -49,7 +49,7 @@ ParticleSystem:
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4843,7 +4843,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 47c3b63ade02f0d4c9c6f9615ca8c9f9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: -0.96
+  m_Pitch: 1.5
   Loop: 0
   Mute: 0
   Spatialize: 0
