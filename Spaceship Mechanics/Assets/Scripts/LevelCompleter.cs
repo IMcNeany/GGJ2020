@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Experimental.Rendering.LWRP;
 
 public class LevelCompleter : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class LevelCompleter : MonoBehaviour
     public string level_name;
     public List<BrokenObject> broken_parts;
     public List<Door> doors;
+    public Light2D room_light;
     //list of doors?
 
     private void Awake()
@@ -37,11 +39,12 @@ public class LevelCompleter : MonoBehaviour
                 doors[i].isUnlocked = true;
                 doors[i].UpdateLights();
             }
+            room_light.intensity = 0.5f;
 
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.tag == "Player")
         {

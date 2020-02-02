@@ -5,7 +5,7 @@ using UnityEngine;
 public class MagneticArea : MonoBehaviour
 {
     private List<Rigidbody2D> held_rigids;
-    public float magnetic_strength = 5.0f;
+    public float magnetic_strength = 10.0f;
     public GameObject broken_object;
     private BrokenObject broken_script;
 
@@ -44,24 +44,33 @@ public class MagneticArea : MonoBehaviour
         }
         for(int i = 0; i < held_rigids.Count; i++)
         {
-            if(held_rigids[i].velocity.magnitude > 20.0f)
+            if(held_rigids[i]!= null)
             {
-                return;
+                if (held_rigids[i].velocity.magnitude > 20.0f)
+                {
+                    return;
+                }
+                if (broken_object)
+                {
+                    held_rigids[i].AddForce((broken_object.transform.position - held_rigids[i].transform.position).normalized * magnetic_strength);
+                }
+                else
+                {
+                    held_rigids[i].AddForce((transform.position - held_rigids[i].transform.position).normalized * magnetic_strength);
+                }
             }
-            if(broken_object)
-            {
-                held_rigids[i].AddForce((broken_object.transform.position - held_rigids[i].transform.position).normalized * magnetic_strength);
-            }
-            else
-            {
-                held_rigids[i].AddForce((transform.position - held_rigids[i].transform.position).normalized * magnetic_strength);
-            }
-
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
+        for(int i = 0; i < held_rigids.Count; i++)
+        {
+            if(held_rigids[i] == collision.attachedRigidbody)
+            {
+                return;
+            }
+        }
         if(collision.tag == "Fixable")
         {
             if(broken_object == null && collision.gameObject.GetComponent<BrokenObject>().broken == true)
