@@ -85,29 +85,39 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(2);
             Destroy(gameObject);
         }
+
+        bool boost = false;
         if (fuel > 0)
         {
             if (Input.GetKey(KeyCode.W))       //booster input
             {
                 body.AddForce(Vector2.up * speed * Time.deltaTime);
                 fuel -= Time.deltaTime;
+                boost = true;
             }
             if (Input.GetKey(KeyCode.A))
             {
                 body.AddForce(-Vector2.right * speed * Time.deltaTime);
                 fuel -= Time.deltaTime;
+                boost = true;
             }
             if (Input.GetKey(KeyCode.S))
             {
                 body.AddForce(-Vector2.up * speed * Time.deltaTime);
                 fuel -= Time.deltaTime;
+                boost = true;
             }
             if (Input.GetKey(KeyCode.D))
             {
                 body.AddForce(Vector2.right * speed * Time.deltaTime);
                 fuel -= Time.deltaTime;
+                boost = true;
             }
-        }        
+        }
+        if (!boost)
+        {
+            fuel += Time.deltaTime * 0.5f;
+        }
 
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);     //look rotation
         float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
