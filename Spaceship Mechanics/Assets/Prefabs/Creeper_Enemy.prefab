@@ -234,10 +234,9 @@ MonoBehaviour:
   circle_collider: {fileID: 3610099519994634283}
   box_collider: {fileID: 2449379807755785066}
   creeper_health: 20
-  timer: 3
-  explosion: {fileID: 567635323618922946, guid: 9cdd51e1471cf5b44a5b0f6c32a81bba,
+  explode_timer_tick: 5
+  explosion: {fileID: 4145984441336405081, guid: 9b1c2e99303bfd24c8ce4bde59048cdd,
     type: 3}
   hit: {fileID: 2449379807755785066}
   players_health: {fileID: 3157957787007728729, guid: b8a7e4d6efe99184fa85c4494f739d94,
     type: 3}
-  explode_timer_tick: 5

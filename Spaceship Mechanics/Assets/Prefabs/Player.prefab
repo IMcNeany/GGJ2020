@@ -188,13 +188,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 002ea9060ec625a4682234a18f52e96b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 100
+  speed: 130
+  maxHealth: 100
   laser: {fileID: 8241918036756072768, guid: 5e1fc78226bb0b6489da3c201bf610fc, type: 3}
   healthbar: {fileID: 0}
   fuelBar: {fileID: 0}
   o2Bar: {fileID: 0}
   equipIndex: 0
   equipment: []
+  current_level: {fileID: 0}
 --- !u!58 &-8949573444584517370
 CircleCollider2D:
   m_ObjectHideFlags: 0

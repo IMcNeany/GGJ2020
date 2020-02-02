@@ -21,9 +21,8 @@ public class HealthPickup : MonoBehaviour
         
     }
 
-    public void OnTriggerEnter2D(Collider2D collision)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-     
         if(collision.gameObject.tag == ("Player"))
         {
             the_Player.GetComponent<Player>().GainHealth(health_gain);
