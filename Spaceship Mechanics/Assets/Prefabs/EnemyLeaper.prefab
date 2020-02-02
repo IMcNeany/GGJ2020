@@ -204,12 +204,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  enemy_health: 5
+  enemy_health: 30
   walking_distance: 10
   circle_collider: {fileID: 0}
   box_collider: {fileID: 0}
   jumpForce: 200
   vert: 0
   left: 0
-  up: 0
+  down: 0
   jumpTimer: 0
