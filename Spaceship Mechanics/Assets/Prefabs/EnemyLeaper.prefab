@@ -166,7 +166,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.5
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
@@ -203,12 +203,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0013f1fe65a68f48a3df6416b92c3d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 2
   enemy_health: 5
   walking_distance: 10
   circle_collider: {fileID: 0}
   box_collider: {fileID: 0}
-  jumpForce: 400
+  jumpForce: 200
   vert: 0
   left: 0
   up: 0

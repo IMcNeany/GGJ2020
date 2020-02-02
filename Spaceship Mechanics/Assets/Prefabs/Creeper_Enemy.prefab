@@ -165,9 +165,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -55549143
+  m_SortingLayer: 6
+  m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: a5298fffc6659bb469f23479614e5020, type: 3}
   m_Color: {r: 1, g: 0.07986704, b: 0, a: 1}
   m_FlipX: 0
@@ -228,13 +228,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 123bc54bd595e1b4d88e1d6e4dc4c27d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 0.3
   enemy_health: 50
   walking_distance: 10
   circle_collider: {fileID: 3610099519994634283}
   box_collider: {fileID: 2449379807755785066}
+  timer: 3
   explosion: {fileID: 567635323618922946, guid: 9cdd51e1471cf5b44a5b0f6c32a81bba,
     type: 3}
   hit: {fileID: 2449379807755785066}
-  timer: 3
-  player: {fileID: 3157957787007728729, guid: b8a7e4d6efe99184fa85c4494f739d94, type: 3}
+  players_health: {fileID: -1556773010918117997, guid: b8a7e4d6efe99184fa85c4494f739d94,
+    type: 3}
+  explode_timer_tick: 5

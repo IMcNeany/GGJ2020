@@ -2,17 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering.LWRP;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
     [Header("Player Stats")]
     [SerializeField] private float speed = 10.0f;
-    [SerializeField] private float maxHealth = 100;
+    [SerializeField] private readonly float maxHealth = 100;
     private float health;
     private bool alive;
-    [SerializeField] private float maxFuel = 100;
+    [SerializeField] private readonly float maxFuel = 100;
     private float fuel;
-    [SerializeField] private float maxO2 = 100;
+    [SerializeField] private readonly float maxO2 = 100;
     private float O2;
 
     [Header("Unity Stuff")]
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
     public HealthBar o2Bar;
     public int equipIndex;
     public List<PlayerEquipment> equipment;
-    private Light2D light;
+    private Light2D glowLight;
     
     void Start()
     {
@@ -40,12 +41,24 @@ public class Player : MonoBehaviour
                 equipment.Add(transform.GetChild(i).GetComponent<PlayerEquipment>());
             }
         }
-        light = GetComponentInChildren<Light2D>();
+        glowLight = GetComponentInChildren<Light2D>();
     }
 
     void Update()
     {
-        O2 -= Time.deltaTime;
+        //if (room.hasO2)       //Todo: add gaining oxygen
+        //{
+        //    O2 += Time.deltaTime * 2;
+        //    if (O2 > maxO2)
+        //    {
+        //        O2 = maxO2;
+        //    }
+        //}
+        //else
+        //{
+            O2 -= Time.deltaTime;
+        //}
+        
 
         if (O2 <= 0)
         {
@@ -54,29 +67,32 @@ public class Player : MonoBehaviour
         if (health <= 0 && alive)
         {
             Debug.Log("You are dead");
+            SceneManager.LoadScene(2);
             Destroy(gameObject);
         }
-
-        if (Input.GetKey(KeyCode.W))       //booster input
+        if (fuel > 0)
         {
-            body.AddForce(Vector2.up * speed * Time.deltaTime);
-            fuel -= Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            body.AddForce(-Vector2.right * speed * Time.deltaTime);
-            fuel -= Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            body.AddForce(-Vector2.up * speed * Time.deltaTime);
-            fuel -= Time.deltaTime;
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            body.AddForce(Vector2.right * speed * Time.deltaTime);
-            fuel -= Time.deltaTime;
-        }
+            if (Input.GetKey(KeyCode.W))       //booster input
+            {
+                body.AddForce(Vector2.up * speed * Time.deltaTime);
+                fuel -= Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.A))
+            {
+                body.AddForce(-Vector2.right * speed * Time.deltaTime);
+                fuel -= Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                body.AddForce(-Vector2.up * speed * Time.deltaTime);
+                fuel -= Time.deltaTime;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                body.AddForce(Vector2.right * speed * Time.deltaTime);
+                fuel -= Time.deltaTime;
+            }
+        }        
 
         Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);     //look rotation
         float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
@@ -102,7 +118,7 @@ public class Player : MonoBehaviour
 
         if (O2 / maxO2 <= 0.5 && O2 / maxO2 > 0.1)      //dim light
         {
-            light.intensity = (O2 * 2) / maxO2;
+            glowLight.intensity = (O2 * 2) / maxO2;
         }
 
         if (Input.GetMouseButtonUp(0))      //mouse control
