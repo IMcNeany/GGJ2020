@@ -6,6 +6,7 @@ public class Pause : MonoBehaviour
 {
     private bool isPaused;
     [SerializeField] private GameObject pausePanel;
+    [SerializeField] private GameObject controlsPanel;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +27,7 @@ public class Pause : MonoBehaviour
     public void Resume()
     {
         pausePanel.SetActive(false);
+        controlsPanel.SetActive(false);
         Time.timeScale = 1f;
         isPaused = false;
     }
