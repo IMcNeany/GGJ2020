@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public List<PlayerEquipment> equipment;
     private Light2D glowLight;
     [SerializeField] private LevelCompleter current_level;
+    [SerializeField] private Transform offset;
     
     void Start()
     {
@@ -35,11 +36,17 @@ public class Player : MonoBehaviour
         fuel = maxFuel;
         O2 = maxO2;
         equipment = new List<PlayerEquipment>();
+        bool first = true;
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).GetComponent<PlayerEquipment>())
             {
-                equipment.Add(transform.GetChild(i).GetComponent<PlayerEquipment>());
+                AddEquipment(transform.GetChild(i).GetComponent<PlayerEquipment>());
+                if (first)
+                {
+                    equipment[0].gameObject.SetActive(true);
+                    first = false;
+                }
             }
         }
         glowLight = GetComponentInChildren<Light2D>();
@@ -203,8 +210,9 @@ public class Player : MonoBehaviour
         equipment.Add(_equip);
         _equip.transform.parent = transform;
         _equip.transform.rotation = transform.rotation;
-        _equip.transform.localPosition = new Vector3(0.15f, 0.18f, 0f);
+        _equip.transform.localPosition = offset.localPosition;
         _equip.GetComponent<BoxCollider2D>().enabled = false;
+        Destroy(_equip.GetComponent<Rigidbody2D>());
         _equip.gameObject.SetActive(false);
     }
 
