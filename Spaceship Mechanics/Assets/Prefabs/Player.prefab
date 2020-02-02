@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 7782647341829345911}
   - component: {fileID: -1556773010918117997}
   - component: {fileID: -8949573444584517370}
+  - component: {fileID: 5133391259343013265}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -141,7 +142,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 986997245
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: a5298fffc6659bb469f23479614e5020, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -190,9 +191,11 @@ MonoBehaviour:
   speed: 100
   maxHealth: 100
   maxFuel: 100
+  maxO2: 100
   laser: {fileID: 8241918036756072768, guid: 5e1fc78226bb0b6489da3c201bf610fc, type: 3}
   healthbar: {fileID: 0}
   fuelBar: {fileID: 0}
+  o2Bar: {fileID: 0}
   equipIndex: 0
   equipment: []
 --- !u!58 &-8949573444584517370
@@ -211,3 +214,15 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -0.03}
   serializedVersion: 2
   m_Radius: 0.37
+--- !u!114 &5133391259343013265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3157957787007728729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f736b403180cd745a9493e4b4c231f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
