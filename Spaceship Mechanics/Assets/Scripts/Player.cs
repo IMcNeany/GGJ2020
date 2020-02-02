@@ -225,7 +225,7 @@ public class Player : MonoBehaviour
         Destroy(_equip.GetComponent<Rigidbody2D>());
         _equip.gameObject.SetActive(false);
     }
-
+      
     public void DealDamage(float _dam)
     {
         health -= _dam;
