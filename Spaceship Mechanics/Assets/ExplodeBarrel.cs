@@ -5,6 +5,7 @@ using UnityEngine;
 public class ExplodeBarrel : MonoBehaviour
 {
     private Rigidbody2D RB;
+    public GameObject explosion;
     // Start is called before the first frame update
     private void Awake()
     {
@@ -14,26 +15,19 @@ public class ExplodeBarrel : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(RB.velocity.magnitude >= 7.0f)
+        if(RB.velocity.magnitude >= 5.0f)
         {
             Explode();
         }
-        if(collision.rigidbody.velocity.magnitude >= 7.0f)
+        if(collision.rigidbody.velocity.magnitude >= 5.0f)
         {
             Explode();
-        }
-        if(collision.gameObject.tag == "Player")
-        {
-            collision.gameObject.GetComponent<Player>().DealDamage(24.0f);
-        }
-        if(collision.gameObject.tag == "Enemy")
-        {
-            collision.gameObject.GetComponent<Enemies>().DealDamage(24.0f);
         }
     }
 
     public void Explode()
     {
+        Instantiate(explosion, transform.position, transform.rotation);
         gameObject.SetActive(false);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour
 {
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.HasComponent<Door>())
         {

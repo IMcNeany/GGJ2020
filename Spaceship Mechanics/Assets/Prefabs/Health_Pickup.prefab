@@ -95,7 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f72550c9be5967b4cac23c4b51a632c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health_gain: 15
+  health_gain: 40
   the_Player: {fileID: 0}
 --- !u!50 &1376974790038379813
 Rigidbody2D:
