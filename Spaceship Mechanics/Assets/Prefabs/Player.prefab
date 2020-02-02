@@ -189,9 +189,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 100
-  maxHealth: 100
-  maxFuel: 100
-  maxO2: 100
   laser: {fileID: 8241918036756072768, guid: 5e1fc78226bb0b6489da3c201bf610fc, type: 3}
   healthbar: {fileID: 0}
   fuelBar: {fileID: 0}
