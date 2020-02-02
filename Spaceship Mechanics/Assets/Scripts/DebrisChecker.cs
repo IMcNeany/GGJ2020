@@ -24,7 +24,7 @@ public class DebrisChecker : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(GetComponent<Rigidbody2D>().velocity.magnitude > 3.0f)
+        if(GetComponent<Rigidbody2D>().velocity.magnitude > 2.5f)
         {
             audio.pitch = Random.Range(0.3f, 0.7f);
             audio.PlayOneShot(audio.clip);

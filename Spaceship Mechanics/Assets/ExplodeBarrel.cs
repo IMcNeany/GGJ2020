@@ -15,7 +15,7 @@ public class ExplodeBarrel : MonoBehaviour
 
     public void OnCollisionEnter2D(Collision2D collision)
     {
-        if(RB.velocity.magnitude >= 5.0f)
+        if(RB.velocity.magnitude >= 4.0f)
         {
             Explode();
         }
