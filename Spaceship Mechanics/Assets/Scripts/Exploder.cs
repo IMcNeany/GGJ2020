@@ -7,6 +7,10 @@ public class Exploder : Enemies
     public float creeper_health = 20;
     private float damage = 49.0f;
     public float explode_timer_tick = 5.0f;
+    private float currentTime = 0.0f;
+    private float time = 5.0f;
+    private float min_scale = 1.0f;
+    private float scale = 0.50f;
 
     public GameObject explosion;
     public GameObject hit;
@@ -85,7 +89,6 @@ public class Exploder : Enemies
             //big explosion
             //players health gets set down
             players_health.GetComponent<Player>().DealDamage(24.0f);
-
             explosion = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(explosion, 1.0f);
             gameObject.SetActive(false);
@@ -98,6 +101,7 @@ public class Exploder : Enemies
 
         if (explode_timer_tick < 0)
         {
+           
             explosion = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(explosion, 0.75f);
             gameObject.SetActive(false);
@@ -107,8 +111,16 @@ public class Exploder : Enemies
 
     public override void Update()
     {
+        Vector3 originalScale = transform.localScale;
+        Vector3 destinationScale = new Vector3(1.1f, 1.1f, 1.1f);
+
         if (the_trigger)
         {
+            //transform.localScale = Vector3.Lerp(originalScale, destinationScale, currentTime / time);
+
+            min_scale = Time.time;
+            transform.localScale = new Vector3(Mathf.PingPong(min_scale, + scale) + 1, Mathf.PingPong(min_scale, + scale) + 1, Mathf.PingPong(min_scale, + scale) + 1);
+
             Timer();
         }
 
