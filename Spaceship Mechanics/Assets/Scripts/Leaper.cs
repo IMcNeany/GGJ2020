@@ -9,10 +9,11 @@ public class Leaper : Enemies
     [Header("Wall location")]
     [SerializeField] private bool vert;
     [SerializeField] private bool left;
-    [SerializeField] private bool up;
+    [SerializeField] private bool down;
     private Rigidbody2D body;
     [SerializeField] private float jumpTimer;
     private bool playerInRange;
+    private Vector2 wallDir;
 
     void Start()
     {
@@ -35,16 +36,20 @@ public class Leaper : Enemies
         else
         {
             body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
-            if (!up)
+            if (!down)
             {
                 transform.rotation = Quaternion.AngleAxis(180, Vector3.forward);
             }
         }
     }
 
-    void Update()
+    override public void Update()
     {
         jumpTimer += Time.deltaTime * Random.value;
+        if (cling)
+        {
+            body.AddForce(wallDir);
+        }
         if(jumpTimer > 5 && cling)
         {
             if (playerInRange)
@@ -71,7 +76,7 @@ public class Leaper : Enemies
                 {
                     n *= 1;
                 }
-                body.AddForce(Vector2.right * n);
+                body.AddForce(transform.parent.right * n);
             }
             if (!vert)
             {
@@ -83,7 +88,7 @@ public class Leaper : Enemies
                 {
                     n *= 1;
                 }
-                body.AddForce(Vector2.up * n);
+                body.AddForce(transform.parent.up * n);
             }
         }
         base.Update();
@@ -102,29 +107,35 @@ public class Leaper : Enemies
         ContactPoint2D point = collision.GetContact(0);
         float dir = Mathf.Atan2(point.normal.y, point.normal.x) * Mathf.Rad2Deg;
         dir -= 90;
+        wallDir = -point.normal;
         if (collision.gameObject.CompareTag("Wall"))
         {
-            jumpTimer = 0;
+            body.velocity = Vector2.zero;
+            if (!cling)
+            {
+                jumpTimer = 0;
+            }
+            
             if (point.normal.y > 0.3)
             {
                 cling = true;
-                body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                body.constraints = RigidbodyConstraints2D.FreezeRotation;
                 vert = true;
-                up = false;
+                down = false;
                 transform.rotation = Quaternion.AngleAxis(dir, Vector3.forward);
             }
             else if (point.normal.y < -0.3)
             {
                 cling = true;
-                body.constraints = RigidbodyConstraints2D.FreezePositionY | RigidbodyConstraints2D.FreezeRotation;
+                body.constraints = RigidbodyConstraints2D.FreezeRotation;
                 vert = true;
-                up = true;
+                down = true;
                 transform.rotation = Quaternion.AngleAxis(dir, Vector3.forward);
             }
             else if (point.normal.x > 0.3)
             {
                 cling = true;
-                body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                body.constraints = RigidbodyConstraints2D.FreezeRotation;
                 vert = false;
                 left = true;
                 transform.rotation = Quaternion.AngleAxis(dir, Vector3.forward);
@@ -132,7 +143,7 @@ public class Leaper : Enemies
             else if (point.normal.x < -0.3)
             {
                 cling = true;
-                body.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezeRotation;
+                body.constraints = RigidbodyConstraints2D.FreezeRotation;
                 vert = false;
                 left = false;
                 transform.rotation = Quaternion.AngleAxis(dir, Vector3.forward);

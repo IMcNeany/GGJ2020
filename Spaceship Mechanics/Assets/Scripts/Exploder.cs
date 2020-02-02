@@ -9,9 +9,9 @@ public class Exploder : Enemies
     public GameObject explosion;
     public GameObject hit;
     public Player players_health;
+    public float explode_timer_tick = 5.0f;
+    private bool the_trigger;
     
-
-
     void Start()
     {
         enemy_rigidbody = GetComponent<Rigidbody2D>();
@@ -28,7 +28,9 @@ public class Exploder : Enemies
 
         if (the_player)
         {
+            the_trigger = true;
             Chase();
+            Update();
         }
  
         else
@@ -40,6 +42,12 @@ public class Exploder : Enemies
     {
         if (collision.gameObject.transform == the_player)
         {
+            if (the_player)
+            {
+                the_trigger = true;
+                Update();
+            }
+
             the_player = null;
         }
     }
@@ -78,21 +86,30 @@ public class Exploder : Enemies
         {
             //big explosion
             //players health gets set down
-
             explosion = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(explosion, 1.0f);
             gameObject.SetActive(false);
-            Timer();
         }
     }
 
     void Timer()
     {
-        timer -= Time.deltaTime;
-        if (timer < 0)
+        explode_timer_tick -= Time.deltaTime;
+
+        if (explode_timer_tick < 0)
         {
-            explosion.SetActive(false);
-            explosion.gameObject.SetActive(false);
+            explosion = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
+            Destroy(explosion, 1.0f);
+            gameObject.SetActive(false);
+          
+        }
+    }
+
+    public override void Update()
+    {
+        if (the_trigger)
+        {
+            Timer();
         }
     }
 }
