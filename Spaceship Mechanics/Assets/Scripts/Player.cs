@@ -8,7 +8,7 @@ public class Player : MonoBehaviour
 {
     [Header("Player Stats")]
     [SerializeField] private float speed = 10.0f;
-    [SerializeField] private readonly float maxHealth = 100;
+    [SerializeField] float maxHealth = 100;
     private float health;
     private bool alive;
     [SerializeField] private readonly float maxFuel = 100;
@@ -207,5 +207,10 @@ public class Player : MonoBehaviour
     public void DealDamage(float _dam)
     {
         health -= _dam;
+    }
+
+    public void GainHealth(float _Gain)
+    {
+        health += _Gain;
     }
 }
