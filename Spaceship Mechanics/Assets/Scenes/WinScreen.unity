@@ -371,10 +371,10 @@ RectTransform:
   m_Father: {fileID: 1737927437}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 25}
-  m_SizeDelta: {x: -300, y: -150}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 300}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1217370325
 MonoBehaviour:
@@ -580,8 +580,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -599,7 +599,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 22.15
+  m_fontSize: 20.7
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -637,7 +637,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 10.531966, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 1472969672}
     characterCount: 9
@@ -849,7 +849,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -30, y: 30}
+  m_AnchoredPosition: {x: -29.3, y: 30}
   m_SizeDelta: {x: 200, y: 55}
   m_Pivot: {x: 1, y: 0}
 --- !u!114 &1859236688
@@ -958,7 +958,7 @@ GameObject:
   - component: {fileID: 1866336722}
   - component: {fileID: 1866336721}
   m_Layer: 5
-  m_Name: GameOver
+  m_Name: WinMessageOver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -980,7 +980,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -25}
+  m_AnchoredPosition: {x: 0, y: -15.9}
   m_SizeDelta: {x: -60, y: 166.1}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1866336721
@@ -1005,7 +1005,9 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_text: 'Congratulations
 
-    You Repaired the ship!'
+    You Repaired
+
+    the ship!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a12a0c9e9fa2f434b8e33459d9920481, type: 2}
   m_sharedMaterial: {fileID: -3820809342216272881, guid: a12a0c9e9fa2f434b8e33459d9920481,
@@ -1015,8 +1017,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4294434570
-  m_fontColor: {r: 0.039215688, g: 0.8745099, b: 0.9686275, a: 1}
+    rgba: 4293978011
+  m_fontColor: {r: 0.6096476, g: 0.9095988, b: 0.9433962, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1173,8 +1175,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -1230,7 +1232,7 @@ MonoBehaviour:
   m_firstVisibleCharacter: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 6.319171, w: 0}
   m_textInfo:
     textComponent: {fileID: 2019975218}
     characterCount: 6
