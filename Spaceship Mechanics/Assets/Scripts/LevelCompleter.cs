@@ -8,11 +8,16 @@ public class LevelCompleter : MonoBehaviour
     public Text level_text;
     public string level_name;
     public List<BrokenObject> broken_parts;
+    public List<Door> doors;
     //list of doors?
 
     private void Awake()
     {
         level_text = GameObject.Find("LevelText").GetComponent<Text>();
+        if(level_name == "")
+        {
+            level_name = gameObject.name;
+        }
     }
     void Update()
     {
@@ -27,11 +32,12 @@ public class LevelCompleter : MonoBehaviour
 
         if(complete)
         {
-            //for (int i = 0; i < List of doors; i++)
-            //{
-            //    //unlock door here
-            //}
-            
+            for (int i = 0; i < doors.Count; i++)
+            {
+                doors[i].isUnlocked = true;
+                doors[i].UpdateLights();
+            }
+
         }
     }
 
