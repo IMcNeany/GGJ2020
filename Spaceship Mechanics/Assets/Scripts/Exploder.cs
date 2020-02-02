@@ -4,12 +4,13 @@ using UnityEngine;
 
 public class Exploder : Enemies
 {
+    private float damage = 49.0f;
+    public float timer = 3.0f;
     public GameObject explosion;
     public GameObject hit;
-    public float timer = 3.0f;
-    private Player players_health;
-    private float damage = 49.0f;
-    public GameObject player;
+    public Player players_health;
+    
+
 
     void Start()
     {
@@ -47,13 +48,7 @@ public class Exploder : Enemies
     {
         if (collision.gameObject.tag == "Player")
         {
-            //players_health.tag = "Player";
-            //players_health.DealDamage(damage);
-
-            //player.gameObject.tag = "Player";
-
-            //GameObject.Find("Player").GetComponent<Player>().enabled = true;
-
+            players_health.GetComponent<Player>().DealDamage(49.0f);
             Hit();
         }
     }
