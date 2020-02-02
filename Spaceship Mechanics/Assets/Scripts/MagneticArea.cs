@@ -108,6 +108,10 @@ public class MagneticArea : MonoBehaviour
 
     public void Pulse(float strength)
     {
+        if(held_rigids == null)
+        {
+            return;
+        }
         for(int i = 0; i < held_rigids.Count; i++)
         {
             if(held_rigids[i] == null)
