@@ -30,7 +30,6 @@ public class Exploder : Enemies
         {
             the_trigger = true;
             Chase();
-            Update();
         }
  
         else
@@ -45,7 +44,6 @@ public class Exploder : Enemies
             if (the_player)
             {
                 the_trigger = true;
-                Update();
             }
 
             the_player = null;
