@@ -99,7 +99,7 @@ public class Exploder : Enemies
         if (explode_timer_tick < 0)
         {
             explosion = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
-            Destroy(explosion, 1.0f);
+            Destroy(explosion, 0.75f);
             gameObject.SetActive(false);
           
         }
