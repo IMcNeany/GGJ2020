@@ -6,11 +6,12 @@ public class Exploder : Enemies
 {
     public float creeper_health = 20;
     private float damage = 49.0f;
-    public float timer = 3.0f;
+    public float explode_timer_tick = 5.0f;
+
     public GameObject explosion;
     public GameObject hit;
     public GameObject players_health;
-    public float explode_timer_tick = 5.0f;
+
     private bool the_trigger;
     
     void Start()
@@ -52,12 +53,14 @@ public class Exploder : Enemies
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag == "Player")
         {
             Hit();
         }
+
+        base.OnCollisionEnter2D(collision);
     }
 
     void Chase()
@@ -108,5 +111,7 @@ public class Exploder : Enemies
         {
             Timer();
         }
+
+        base.Update();
     }
 }
