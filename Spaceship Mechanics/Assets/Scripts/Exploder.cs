@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class Exploder : Enemies
 {
+    public float creeper_health = 20;
     private float damage = 49.0f;
     public float timer = 3.0f;
     public GameObject explosion;
     public GameObject hit;
-    public Player players_health;
+    public GameObject players_health;
     public float explode_timer_tick = 5.0f;
     private bool the_trigger;
     
     void Start()
     {
         enemy_rigidbody = GetComponent<Rigidbody2D>();
+        players_health = GameObject.FindWithTag("Player");
     }
     void OnTriggerStay2D(Collider2D collision)
     {
@@ -54,26 +56,21 @@ public class Exploder : Enemies
     {
         if (collision.gameObject.tag == "Player")
         {
-            players_health.GetComponent<Player>().DealDamage(49.0f);
             Hit();
         }
     }
 
     void Chase()
     {
-        //find & attack player
+        //find & chase the player
 
         float distance = Vector3.Distance(transform.position, the_player.position);
-        /*float step = speed * Time.deltaTime;*/ // calculates distance to move
 
         if (distance < walking_distance)
         {
             Vector3 moveForce = the_player.transform.position - transform.position;
             moveForce.Normalize();
             enemy_rigidbody.AddForce(moveForce * speed);
-
-            //transform.position = Vector3.MoveTowards(transform.position, the_player.position, step);
-            //transform.position = Vector3.SmoothDamp(transform.position, the_player.position, ref smoothVelocity, smooth_time);
         }
     }
 
@@ -84,6 +81,8 @@ public class Exploder : Enemies
         {
             //big explosion
             //players health gets set down
+            players_health.GetComponent<Player>().DealDamage(24.0f);
+
             explosion = GameObject.Instantiate(explosion, transform.position, Quaternion.identity);
             Destroy(explosion, 1.0f);
             gameObject.SetActive(false);

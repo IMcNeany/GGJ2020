@@ -39,4 +39,12 @@ public class Enemies : MonoBehaviour
         }
     }
 
+    public virtual void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Debris") && collision.gameObject.GetComponent<Rigidbody2D>().velocity.magnitude > 6)
+        {
+            DealDamage(16);
+        }
+    }
+
 }

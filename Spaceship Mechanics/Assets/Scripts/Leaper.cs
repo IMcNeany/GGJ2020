@@ -102,7 +102,7 @@ public class Leaper : Enemies
         body.AddForce(transform.up * jumpForce);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    public override void OnCollisionEnter2D(Collision2D collision)
     {
         ContactPoint2D point = collision.GetContact(0);
         float dir = Mathf.Atan2(point.normal.y, point.normal.x) * Mathf.Rad2Deg;
@@ -154,6 +154,8 @@ public class Leaper : Enemies
         {
             collision.gameObject.GetComponent<Player>().DealDamage(10);
         }
+
+        base.OnCollisionEnter2D(collision);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
