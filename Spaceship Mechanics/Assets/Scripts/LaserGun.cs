@@ -5,6 +5,7 @@ using UnityEngine;
 public class LaserGun : PlayerEquipment
 {
     public GameObject laser;
+    public Transform offset;
     public override void Fire()
     {
         if (current_reload > 0)
@@ -12,11 +13,23 @@ public class LaserGun : PlayerEquipment
             return;
         }
 
-        GameObject newLaser = Instantiate(laser, transform.parent.position + transform.parent.up * 0.45f, transform.parent.rotation);
+        GameObject newLaser = Instantiate(laser, offset.position, transform.rotation);
         Vector2 impulse = transform.parent.up * 100;
         newLaser.GetComponent<Laser>().launchSpeed = impulse;
         this.GetComponentInParent<Rigidbody2D>().AddForce(-impulse);
 
         base.Fire();
+    }
+
+    public override void Update()
+    {
+        if (!floor)
+        {
+            Vector3 dir = Input.mousePosition - Camera.main.WorldToScreenPoint(transform.position);     //look rotation
+            float angle = (Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg) - 90;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
+        
+        base.Update();
     }
 }
