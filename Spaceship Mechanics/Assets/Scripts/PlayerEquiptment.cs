@@ -6,6 +6,7 @@ public class PlayerEquipment : MonoBehaviour
 {
     public float reload_time;
     protected float current_reload = 0.0f;
+    [SerializeField] private bool floor;
 
     private void Awake()
     {
@@ -48,5 +49,14 @@ public class PlayerEquipment : MonoBehaviour
     virtual public void SecondaryFireHeld()
     {
 
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player") && floor)
+        {
+            collision.gameObject.GetComponent<Player>().AddEquipment(this);
+            floor = false;
+        }
     }
 }
