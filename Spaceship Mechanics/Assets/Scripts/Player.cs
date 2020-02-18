@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public HealthBar fuelBar;
     public HealthBar o2Bar;
     public int equipIndex;
+    public GameObject jetFlames;
     public List<PlayerEquipment> equipment;
     private Light2D glowLight;
     [SerializeField] private LevelCompleter current_level;
@@ -30,6 +31,7 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        
         body = GetComponent<Rigidbody2D>();
         health = maxHealth;
         alive = true;
@@ -50,6 +52,7 @@ public class Player : MonoBehaviour
             }
         }
         glowLight = GetComponentInChildren<Light2D>();
+        jetFlames.SetActive(false);
     }
 
     void Update()
@@ -91,24 +94,28 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))       //booster input
             {
+                jetFlames.SetActive(true);
                 body.AddForce(Vector2.up * speed * Time.deltaTime);
                 fuel -= Time.deltaTime;
                 boost = true;
             }
             if (Input.GetKey(KeyCode.A))
             {
+                jetFlames.SetActive(true);
                 body.AddForce(-Vector2.right * speed * Time.deltaTime);
                 fuel -= Time.deltaTime;
                 boost = true;
             }
             if (Input.GetKey(KeyCode.S))
             {
+                jetFlames.SetActive(true);
                 body.AddForce(-Vector2.up * speed * Time.deltaTime);
                 fuel -= Time.deltaTime;
                 boost = true;
             }
             if (Input.GetKey(KeyCode.D))
             {
+                jetFlames.SetActive(true);
                 body.AddForce(Vector2.right * speed * Time.deltaTime);
                 fuel -= Time.deltaTime;
                 boost = true;
@@ -116,6 +123,10 @@ public class Player : MonoBehaviour
         }
         if (!boost)
         {
+            if(jetFlames.activeSelf)
+            {
+                jetFlames.SetActive(false);
+            }
             fuel += Time.deltaTime * 0.5f;
         }
 
