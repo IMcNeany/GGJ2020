@@ -56,6 +56,7 @@ public class PlayerEquipment : MonoBehaviour
         if (collision.gameObject.CompareTag("Player") && floor)
         {
             collision.gameObject.GetComponent<Player>().AddEquipment(this);
+            FindObjectOfType<WeaponUI>().LaserPickedUp();
             floor = false;
         }
     }

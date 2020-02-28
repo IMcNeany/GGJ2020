@@ -187,6 +187,7 @@ public class Player : MonoBehaviour
                 equipIndex = 0;
             }
             equipment[equipIndex].gameObject.SetActive(true);
+            FindObjectOfType<WeaponUI>().SwitchWeapon();
         }
 
     }
