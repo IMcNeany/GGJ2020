@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Asteroid : MonoBehaviour
 {
-    public float timer = 180.0f;
-    private float current_timer = 0.0f;
-    public float power = 100.0f;
+   // public float timer = 180.0f;
+   // private float current_timer = 0.0f;
+    public float power = 100000000.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,10 +16,21 @@ public class Asteroid : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        current_timer += Time.deltaTime;
-        if(current_timer >= timer)
+     
+    }
+
+    public void LaunchAsteroid()
+    {
+        if (transform.position.x < 0)
         {
-            GetComponent<Rigidbody2D>().AddForce(Vector2.right * power);
+            gameObject.transform.rotation = new Quaternion(0, 0, 90, 0);
+              //  (0, 0, 90);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.right * power,ForceMode2D.Impulse);
+        }
+        else
+        {
+            gameObject.transform.rotation = new Quaternion(0, 0, -90, 0);
+            GetComponent<Rigidbody2D>().AddForce(Vector2.left * power, ForceMode2D.Impulse);
         }
     }
 
